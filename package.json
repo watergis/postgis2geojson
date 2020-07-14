@@ -35,6 +35,8 @@
   },
   "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "files": [
-    "README.md"
+    "README.md",
+    "dist-cjs",
+    "dist-esm"
   ]
 }
