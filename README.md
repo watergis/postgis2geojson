@@ -3,7 +3,7 @@ This module is to extract GeoJSON files by SQL from PostGIS database.
 
 ## Install
 
-Before installing, you can [Create .npmrc for Github Package](https://github.com/watergis/postgis2geojson/wiki/Create-.npmrc-for-Github-Package).
+Before installing, you can [Create .npmrc for Github Package](https://github.com/watergis/postgis2geojson/wiki/Create-.npmrc-for-Github-Package) if you use github package instead npmjs.
 
 Then, install it.
 ```
