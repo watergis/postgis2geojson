@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JinIgarashi/postgis2geojson.git"
+    "url": "git+https://github.com/watergis/postgis2geojson.git"
   },
   "author": "Jin IGARASHI",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JinIgarashi/postgis2geojson/issues"
+    "url": "https://github.com/watergis/postgis2geojson/issues"
   },
-  "homepage": "https://github.com/JinIgarashi/postgis2geojson#readme",
+  "homepage": "https://github.com/watergis/postgis2geojson#readme",
   "devDependencies": {
     "@types/node": "^14.0.23",
     "@types/pg": "^7.14.4",
