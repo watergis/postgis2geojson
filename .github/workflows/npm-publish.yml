@@ -30,7 +30,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
           # Defaults to the user or organization that owns the workflow file
-          scope: '@watergis'
+          scope: 'watergis'
       - run: npm ci
       - run: npm publish
         env:
