@@ -75,3 +75,14 @@ module.exports = {
 
 See the test module under `test` directory.
 
+## Build
+
+```
+npm run build
+```
+
+## Test
+
+```
+npm run test
+```

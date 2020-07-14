@@ -1,6 +1,6 @@
 {
   "name": "@watergis/postgis2geojson",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "This module is to extract GeoJSON files by SQL from PostGIS database.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,9 @@
     "dist",
     "es5"
   ],
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --project . --module commonjs --outDir ./dist",
@@ -34,7 +36,6 @@
   },
   "dependencies": {
     "fs": "0.0.1-security",
-    "https": "^1.0.0",
     "path": "^0.12.7",
     "pg": "^8.3.0"
   }

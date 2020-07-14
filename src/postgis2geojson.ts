@@ -1,4 +1,4 @@
-import {Pool, PoolConfig} from "pg"
+import {Pool, PoolConfig, PoolClient} from "pg"
 import fs from 'fs'
 import path from 'path'
 
@@ -38,7 +38,7 @@ class postgis2geojson{
         try{
             const layers = this.config.layers;
             let promises: any[] = [];
-            layers.forEach((layer:any)=>{
+            layers.forEach((layer:Layer)=>{
                 promises.push(this.createGeojson(client, layer));
             })
             return Promise.all(promises);
@@ -48,7 +48,7 @@ class postgis2geojson{
         }
     }
 
-    createGeojson(client : any, layer:Layer){
+    createGeojson(client : PoolClient, layer:Layer){
         return new Promise((resolve, reject) =>{
             if (!client){
                 reject('No pg client.');
