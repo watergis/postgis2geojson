@@ -3,17 +3,14 @@ This module is to extract GeoJSON files by SQL from PostGIS database.
 
 ## Install
 
-Before installing, you can [Create .npmrc for Github Package](https://github.com/watergis/postgis2geojson/wiki/Create-.npmrc-for-Github-Package) if you use github package instead npmjs.
-
-Then, install it.
 ```
-npm install @watergis/postgis2geojson
+npm install watergis/postgis2geojson
 ```
 
 ## Usage
 
 ```js
-const {postgis2geojson} = require('@watergis/postgis2geojson');
+const {postgis2geojson} = require('watergis/postgis2geojson');
 const config = require('./config');
 
 const pg2json = new postgis2geojson(config);
