@@ -33,6 +33,7 @@
     "path": "^0.12.7",
     "pg": "^8.3.0"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "files": [
     "README.md"
   ]
