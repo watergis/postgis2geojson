@@ -1,0 +1,36 @@
+{
+  "name": "postgis2geojson",
+  "version": "1.0.0",
+  "description": "This module is to extract GeoJSON files by SQL from PostGIS database.",
+  "main": "dist-cjs/index.js",
+  "module": "dist-esm/index.js",
+  "types": "dist-cjs/index.d.ts",
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc --project . --module commonjs --outDir ./dist-cjs",
+    "build:esm": "tsc --project . --module es2015 --outDir ./dist-esm",
+    "test": "npm run build:cjs && node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JinIgarashi/postgis2geojson.git"
+  },
+  "author": "Jin IGARASHI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JinIgarashi/postgis2geojson/issues"
+  },
+  "homepage": "https://github.com/JinIgarashi/postgis2geojson#readme",
+  "devDependencies": {
+    "@types/node": "^14.0.23",
+    "@types/pg": "^7.14.4",
+    "dotenv": "^8.2.0",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "path": "^0.12.7",
+    "pg": "^8.3.0"
+  }
+}
