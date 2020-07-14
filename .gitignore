@@ -1,5 +1,5 @@
-dist-cjs/
-dist-esm/
+dist/
+es5/
 test/data/
 
 # Logs

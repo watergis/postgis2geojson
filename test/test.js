@@ -1,4 +1,4 @@
-const {postgis2geojson} = require('../dist-cjs/index');
+const {postgis2geojson} = require('../dist/index');
 const config = require('./config');
 
 const example = () =>{
