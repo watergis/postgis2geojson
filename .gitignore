@@ -1,6 +1,7 @@
 dist/
 es6/
 test/data/
+.vscode
 
 # Logs
 logs
