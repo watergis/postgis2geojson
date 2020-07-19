@@ -2,16 +2,24 @@ import { Pool } from 'pg';
 import fs from 'fs';
 import path from 'path';
 
-interface Config {
-  db: any; //DB Settings
+type Config = {
+  db: DbConfig; //DB Settings
   layers: Layer[]; //List of layer to define SQL for GeoJSON
-}
+};
 
-interface Layer {
+type DbConfig = {
+  user: string;
+  password: string;
+  host: string;
+  post: string;
+  database: string;
+};
+
+type Layer = {
   name: string;
   geojsonFileName: string; //File path for GeoJSON
   select: string; //SQL for PostGIS
-}
+};
 
 class postgis2geojson {
   private config: Config;
