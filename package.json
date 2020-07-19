@@ -1,6 +1,6 @@
 {
   "name": "@watergis/postgis2geojson",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "This module is to extract GeoJSON files by SQL from PostGIS database.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
