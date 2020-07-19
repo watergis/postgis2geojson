@@ -31,22 +31,24 @@ class postgis2geojson {
   }
 
   run() {
-    return new Promise((resolve, reject) => {
-      this.dump()
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+    return new Promise<string[]>(
+      (resolve: (value?: string[]) => void, reject: (reason?: any) => void) => {
+        this.dump()
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }
+    );
   }
 
   async dump() {
     const client: any = await this.pool.connect();
     try {
       const layers = this.config.layers;
-      let promises: any[] = [];
+      let promises: Promise<string>[] = [];
       layers.forEach((layer: Layer) => {
         promises.push(this.createGeojson(client, layer));
       });
@@ -58,32 +60,34 @@ class postgis2geojson {
   }
 
   createGeojson(client: any, layer: Layer) {
-    return new Promise((resolve, reject) => {
-      if (!client) {
-        reject('No pg client.');
-      }
-      const parentDir = path.dirname(layer.geojsonFileName);
-      if (!fs.existsSync(parentDir)) {
-        fs.mkdirSync(parentDir, { recursive: true });
-      }
-      const writeStream = fs.createWriteStream(layer.geojsonFileName);
-      writeStream.on('error', (err) => {
-        reject(err);
-      });
-      if (!layer.select) {
-        reject('No SQL of select statement for this layer.');
-      }
-      const stream = client.query(layer.select);
-      stream
-        .then((res: any) => {
-          const json = JSON.stringify(res.rows[0].json);
-          writeStream.write(json);
-          resolve(layer.geojsonFileName);
-        })
-        .catch((err: Error) => {
+    return new Promise<string>(
+      (resolve: (value?: string) => void, reject: (reason?: any) => void) => {
+        if (!client) {
+          reject('No pg client.');
+        }
+        const parentDir = path.dirname(layer.geojsonFileName);
+        if (!fs.existsSync(parentDir)) {
+          fs.mkdirSync(parentDir, { recursive: true });
+        }
+        const writeStream = fs.createWriteStream(layer.geojsonFileName);
+        writeStream.on('error', (err) => {
           reject(err);
         });
-    });
+        if (!layer.select) {
+          reject('No SQL of select statement for this layer.');
+        }
+        const stream = client.query(layer.select);
+        stream
+          .then((res: any) => {
+            const json = JSON.stringify(res.rows[0].json);
+            writeStream.write(json);
+            resolve(layer.geojsonFileName);
+          })
+          .catch((err: Error) => {
+            reject(err);
+          });
+      }
+    );
   }
 }
 
