@@ -1,5 +1,6 @@
 # postgis2geojson
 ![](https://github.com/watergis/postgis2geojson/workflows/Node.js%20Package/badge.svg)
+![GitHub](https://img.shields.io/github/license/watergis/postgis2geojson)
 
 This module is to extract GeoJSON files by SQL from PostGIS database.
 
