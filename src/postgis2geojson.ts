@@ -3,16 +3,8 @@ import fs from 'fs';
 import path from 'path';
 
 type Config = {
-  db: DbConfig; //DB Settings
+  db: any; //DB Settings
   layers: Layer[]; //List of layer to define SQL for GeoJSON
-};
-
-type DbConfig = {
-  user: string;
-  password: string;
-  host: string;
-  post: string;
-  database: string;
 };
 
 type Layer = {
