@@ -1,1 +1,1 @@
-export { default as postgis2geojson } from './postgis2geojson';
+export * from './postgis2geojson';

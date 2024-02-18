@@ -30,20 +30,18 @@
   },
   "homepage": "https://github.com/watergis/postgis2geojson#readme",
   "devDependencies": {
-    "@types/node": "^14.0.23",
-    "@types/pg": "^7.14.4",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
-    "@typescript-eslint/parser": "^3.6.1",
-    "dotenv": "^8.2.0",
-    "eslint": "^7.4.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.0.5",
-    "typescript": "^3.9.6"
+    "@types/node": "^20.11.19",
+    "@types/pg": "^8.11.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "dotenv": "^16.4.4",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "fs": "0.0.1-security",
-    "path": "^0.12.7",
-    "pg": "^8.3.0"
+    "pg": "^8.11.3"
   }
 }
