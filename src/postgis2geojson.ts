@@ -2,18 +2,18 @@ import { Pool } from 'pg';
 import fs from 'fs';
 import path from 'path';
 
-type Config = {
+export type Config = {
   db: any; //DB Settings
   layers: Layer[]; //List of layer to define SQL for GeoJSON
 };
 
-type Layer = {
+export type Layer = {
   name: string;
   geojsonFileName: string; //File path for GeoJSON
   select: string; //SQL for PostGIS
 };
 
-class postgis2geojson {
+export class postgis2geojson {
   private config: Config;
   private readonly pool: Pool;
 
@@ -23,17 +23,15 @@ class postgis2geojson {
   }
 
   run() {
-    return new Promise<string[]>(
-      (resolve: (value?: string[]) => void, reject: (reason?: any) => void) => {
-        this.dump()
-          .then((res) => {
-            resolve(res);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      }
-    );
+    return new Promise<string[]>((resolve, reject) => {
+      this.dump()
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
   }
 
   async dump() {
@@ -52,35 +50,31 @@ class postgis2geojson {
   }
 
   createGeojson(client: any, layer: Layer) {
-    return new Promise<string>(
-      (resolve: (value?: string) => void, reject: (reason?: any) => void) => {
-        if (!client) {
-          reject('No pg client.');
-        }
-        const parentDir = path.dirname(layer.geojsonFileName);
-        if (!fs.existsSync(parentDir)) {
-          fs.mkdirSync(parentDir, { recursive: true });
-        }
-        const writeStream = fs.createWriteStream(layer.geojsonFileName);
-        writeStream.on('error', (err) => {
+    return new Promise<string>((resolve, reject) => {
+      if (!client) {
+        reject('No pg client.');
+      }
+      const parentDir = path.dirname(layer.geojsonFileName);
+      if (!fs.existsSync(parentDir)) {
+        fs.mkdirSync(parentDir, { recursive: true });
+      }
+      const writeStream = fs.createWriteStream(layer.geojsonFileName);
+      writeStream.on('error', (err) => {
+        reject(err);
+      });
+      if (!layer.select) {
+        reject('No SQL of select statement for this layer.');
+      }
+      const stream = client.query(layer.select);
+      stream
+        .then((res: any) => {
+          const json = JSON.stringify(res.rows[0].json);
+          writeStream.write(json);
+          resolve(layer.geojsonFileName);
+        })
+        .catch((err: Error) => {
           reject(err);
         });
-        if (!layer.select) {
-          reject('No SQL of select statement for this layer.');
-        }
-        const stream = client.query(layer.select);
-        stream
-          .then((res: any) => {
-            const json = JSON.stringify(res.rows[0].json);
-            writeStream.write(json);
-            resolve(layer.geojsonFileName);
-          })
-          .catch((err: Error) => {
-            reject(err);
-          });
-      }
-    );
+    });
   }
 }
-
-export default postgis2geojson;
